@@ -11,15 +11,21 @@ class Tiem:
         timed = int(time.time() - self.t0)
         return Tiem.make_time(str(timed))
 
-    def set(id):
+    def add(id):
         if id in Tiem.tiems.keys():
             print("ID in use")
         else:
-            Tiem.tiems[id] = get_time()
+            Tiem.tiems[id] = time.time()
 
-    def delta(id):
-        if id in Tiem.times.keys():
-            return get_time() - Tiem.tiems[id]
+    def pause(self):
+        self.t0 = float(str(self.t0))
+
+    def unpause(self):
+        self.t0 = self.t0 + time.time()
+
+    def delta(id1, id2):
+        if id in Tiem.tiems.keys():
+            return abs(Tiem.tiems[id1] - Tiem.tiems[id2])
         else:
             print("ID not in use")
 
@@ -37,7 +43,7 @@ class Tiem:
             return("Invalid input.")
 
 import random
-n = 20000000
+n = 200000000
 t = Tiem()
 random_list = []
 for i in range(n):
